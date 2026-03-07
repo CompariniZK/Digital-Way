@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Message envoyé – Digital Way</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #04080f;
+      --surface: #080e1a;
+      --blue: #0ea5e9;
+      --blue-glow: #38bdf8;
+      --blue-dim: #0c2a3e;
+      --accent: #00ffe0;
+      --text: #e2eaf5;
+      --muted: #6b8aab;
+      --border: rgba(14, 165, 233, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .4;
+    }
+
+    /* grid background */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* glow orb */
+    .orb {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 6%;
+      background: rgba(4, 8, 15, 0.8);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    /* CARD */
+    .card {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 560px;
+      padding: 3.5rem 3rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      animation: fadeUp .7s ease both;
+    }
+
+    .check-circle {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--blue-dim), #0a1e30);
+      border: 2px solid rgba(14, 165, 233, 0.35);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.8rem;
+      font-size: 2.2rem;
+      animation: popIn .5s .3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      box-shadow: 0 0 40px rgba(14, 165, 233, 0.2);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: .8rem;
+    }
+
+    h1 span {
+      background: linear-gradient(100deg, #0ea5e9 0%, #00ffe0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .info-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      color: var(--blue-glow);
+      font-size: .8rem;
+      letter-spacing: .06em;
+      padding: .45rem 1rem;
+      border-radius: 99px;
+      margin-bottom: 2rem;
+    }
+
+    .info-pill::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: .95rem;
+      padding: .75rem 1.8rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(14, 165, 233, 0.45);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      padding: .75rem 1.8rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    /* footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1rem 6%;
+      color: var(--muted);
+      font-size: .8rem;
+      z-index: 10;
+    }
+
+    footer span {
+      color: var(--blue);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.4); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb"></div>
+
+  <nav>
+    <a href="index.html" class="logo">Digital<span>Way</span></a>
+  </nav>
+
+  <div class="card">
+    <div class="check-circle">✉️</div>
+    <div class="info-pill">Message bien reçu</div>
+    <h1>Merci pour votre <span>message !</span></h1>
+    <p class="subtitle">
+      Nous avons bien reçu votre demande de contact.<br>
+      Gabriel vous répondra dans les <strong style="color: var(--text);">24h</strong> — du lundi au vendredi.
+    </p>
+    <div class="actions">
+      <a href="index.html" class="btn-primary">← Retour à l'accueil</a>
+      <a href="devis.html" class="btn-secondary">Faire un devis gratuit</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 <span>Digital Way</span> — Tous droits réservés. Fait avec 💙 par Gabriel.</p>
+  </footer>
+
+</body>
+
+</html>

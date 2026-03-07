@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital Way</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
       --bg: #04080f;
@@ -15,12 +18,18 @@
       --accent: #00ffe0;
       --text: #e2eaf5;
       --muted: #6b8aab;
-      --border: rgba(14,165,233,0.15);
+      --border: rgba(14, 165, 233, 0.15);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--bg);
@@ -44,13 +53,15 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1.2rem 6%;
-      background: rgba(4,8,15,0.8);
+      background: rgba(4, 8, 15, 0.8);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
@@ -63,7 +74,9 @@
       color: #fff;
     }
 
-    .logo span { color: var(--blue); }
+    .logo span {
+      color: var(--blue);
+    }
 
     nav ul {
       list-style: none;
@@ -85,14 +98,21 @@
     nav ul a::after {
       content: '';
       position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
       background: var(--blue);
       transition: width .3s;
     }
 
-    nav ul a:hover { color: var(--blue-glow); }
-    nav ul a:hover::after { width: 100%; }
+    nav ul a:hover {
+      color: var(--blue-glow);
+    }
+
+    nav ul a:hover::after {
+      width: 100%;
+    }
 
     .nav-cta {
       background: var(--blue);
@@ -102,8 +122,15 @@
       font-weight: 500 !important;
       transition: background .2s, transform .2s !important;
     }
-    .nav-cta::after { display: none !important; }
-    .nav-cta:hover { background: var(--blue-glow) !important; transform: translateY(-1px); }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--blue-glow) !important;
+      transform: translateY(-1px);
+    }
 
     /* ── HERO ── */
     #home {
@@ -131,9 +158,11 @@
     #home::after {
       content: '';
       position: absolute;
-      top: 10%; left: 55%;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 70%);
+      top: 10%;
+      left: 55%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -161,7 +190,8 @@
 
     .hero-tag::before {
       content: '';
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       background: var(--accent);
       border-radius: 50%;
       animation: pulse 1.5s infinite;
@@ -174,7 +204,7 @@
       line-height: 1.08;
       letter-spacing: -0.02em;
       color: #fff;
-      text-shadow: 0 2px 32px rgba(14,165,233,0.10);
+      text-shadow: 0 2px 32px rgba(14, 165, 233, 0.10);
       animation: fadeUp .7s .1s ease both;
     }
 
@@ -184,14 +214,19 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 18px rgba(0,255,224,0.28));
+      filter: drop-shadow(0 0 18px rgba(0, 255, 224, 0.28));
       animation: shimmer 3s ease-in-out infinite alternate;
       background-size: 200% 100%;
     }
 
     @keyframes shimmer {
-      0%   { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 100% 50%;
+      }
     }
 
     .hero-sub {
@@ -222,13 +257,13 @@
       cursor: pointer;
       text-decoration: none;
       transition: background .2s, transform .2s, box-shadow .2s;
-      box-shadow: 0 0 20px rgba(14,165,233,0.25);
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);
     }
 
     .btn-primary:hover {
       background: var(--blue-glow);
       transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(14,165,233,0.45);
+      box-shadow: 0 0 30px rgba(14, 165, 233, 0.45);
     }
 
     .btn-secondary {
@@ -244,10 +279,15 @@
       transition: border-color .2s, color .2s;
     }
 
-    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
 
     /* ── SECTIONS SHARED ── */
-    section { padding: 7rem 6%; }
+    section {
+      padding: 7rem 6%;
+    }
 
     .section-label {
       font-size: .75rem;
@@ -275,14 +315,20 @@
     }
 
     /* ── SERVICES ── */
-    #services { background: var(--surface); position: relative; overflow: hidden; }
+    #services {
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
 
     #services::before {
       content: '';
       position: absolute;
-      bottom: -100px; right: -100px;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%);
+      bottom: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -306,7 +352,9 @@
     .service-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--blue), var(--accent));
       transform: scaleX(0);
@@ -314,15 +362,18 @@
     }
 
     .service-card:hover {
-      border-color: rgba(14,165,233,0.4);
+      border-color: rgba(14, 165, 233, 0.4);
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(14,165,233,0.1);
+      box-shadow: 0 12px 40px rgba(14, 165, 233, 0.1);
     }
 
-    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
 
     .service-icon {
-      width: 48px; height: 48px;
+      width: 48px;
+      height: 48px;
       background: var(--blue-dim);
       border-radius: 8px;
       display: flex;
@@ -347,7 +398,9 @@
     }
 
     /* ── PORTFOLIO ── */
-    #portfolio { background: var(--bg); }
+    #portfolio {
+      background: var(--bg);
+    }
 
     .portfolio-grid {
       display: grid;
@@ -366,7 +419,7 @@
 
     .portfolio-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 16px 50px rgba(14,165,233,0.12);
+      box-shadow: 0 16px 50px rgba(14, 165, 233, 0.12);
     }
 
     .portfolio-img {
@@ -384,7 +437,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(0,255,224,0.08));
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(0, 255, 224, 0.08));
     }
 
     .portfolio-info {
@@ -423,8 +476,16 @@
       gap: 6rem;
     }
 
-    .about-text { flex: 1; }
-    .about-text p { color: var(--muted); line-height: 1.8; margin-top: 1rem; font-size: .97rem; }
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-top: 1rem;
+      font-size: .97rem;
+    }
 
     .about-stats {
       flex: 0 0 280px;
@@ -456,7 +517,9 @@
     }
 
     /* ── CONTACT ── */
-    #contact { background: var(--bg); }
+    #contact {
+      background: var(--bg);
+    }
 
     .contact-wrapper {
       display: grid;
@@ -483,7 +546,8 @@
     }
 
     .contact-detail-icon {
-      width: 38px; height: 38px;
+      width: 38px;
+      height: 38px;
       background: var(--blue-dim);
       border-radius: 6px;
       display: flex;
@@ -493,8 +557,14 @@
       flex-shrink: 0;
     }
 
-    .contact-detail a { color: var(--blue-glow); text-decoration: none; }
-    .contact-detail a:hover { text-decoration: underline; }
+    .contact-detail a {
+      color: var(--blue-glow);
+      text-decoration: none;
+    }
+
+    .contact-detail a:hover {
+      text-decoration: underline;
+    }
 
     .contact-form {
       display: flex;
@@ -517,9 +587,14 @@
     }
 
     .form-group input:focus,
-    .form-group textarea:focus { border-color: var(--blue); }
+    .form-group textarea:focus {
+      border-color: var(--blue);
+    }
 
-    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -531,189 +606,237 @@
       font-size: .85rem;
     }
 
-    footer span { color: var(--blue); }
+    footer span {
+      color: var(--blue);
+    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: .5; transform: scale(1.4); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .5;
+        transform: scale(1.4);
+      }
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav ul { display: none; }
-      #about { flex-direction: column; gap: 3rem; }
-      .about-stats { flex: none; width: 100%; }
-      .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+      nav ul {
+        display: none;
+      }
+
+      #about {
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .about-stats {
+        flex: none;
+        width: 100%;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="logo">Digital<span>Way</span></div>
-  <ul>
-    <li><a href="#home">Accueil</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="portifolio.html">Portfolio</a></li>
-    <li><a href="#about">À propos</a></li>
-    <li><a href="devis.html" class="nav-cta">Contact</a></li>
-  </ul>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Digital<span>Way</span></div>
+    <ul>
+      <li><a href="#home">Accueil</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="portifolio.html">Portfolio</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="devis.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<section id="home">
-  <div class="hero-content">
-    <div class="hero-tag">Présence numérique &amp; croissance</div>
-    <h1>On crée.<br><span class="highlight">Vous grandissez.</span></h1>
-    <p class="hero-sub">Créez votre site web, optimisez Google Business et attirez plus de clients — sans complexité technique.</p>
-    <div class="hero-btns">
-      <a href="#services" class="btn-primary">Voir les services</a>
-      <a href="devis.html" class="btn-secondary">Devis gratuit</a>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-label">Ce que nous faisons</div>
-  <h2>Nos Services</h2>
-  <p class="section-desc">Des solutions digitales pensées pour les commerces et entreprises qui veulent se développer en ligne.</p>
-
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon">🌐</div>
-      <h3>Sites Web Sur Mesure</h3>
-      <p>Design professionnel, rapide et adapté à votre image. Optimisé mobile et SEO dès le départ.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">📍</div>
-      <h3>Google My Business</h3>
-      <p>Optimisation complète de votre fiche Google pour apparaître en tête des recherches locales.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🎨</div>
-      <h3>Flyers & Logos</h3>
-      <p>Création d'identité visuelle cohérente et impactante pour votre marque ou votre commerce.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🔧</div>
-      <h3>Maintenance Mensuelle</h3>
-      <p>Suivi, mises à jour et support continu pour que votre site reste performant et sécurisé.</p>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-text">
-    <div class="section-label">Qui sommes-nous</div>
-    <h2>À propos de Digital Way</h2>
-    <p>Je m'appelle Gabriel, et j'aide les commerces et entreprises à passer au numérique avec des solutions simples et abordables.</p>
-    <p style="margin-top: .8rem;">Basé en France, j'accompagne mes clients de A à Z — de la création du site à sa maintenance, en passant par le référencement local et l'identité de marque.</p>
-  </div>
-  <div class="about-stats">
-    <div class="stat-box">
-      <div class="stat-num">50+</div>
-      <div class="stat-label">Clients accompagnés</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">3ans</div>
-      <div class="stat-label">D'expérience</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Sur mesure</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">24h</div>
-      <div class="stat-label">Délai de réponse</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">Parlons-en</div>
-  <h2>Contactez-nous</h2>
-  <p class="section-desc">Prêt à démarrer ? Contactez-nous pour un devis gratuit, sans engagement.</p>
-
-  <div class="contact-wrapper">
-    <div class="contact-info">
-      <div class="contact-detail">
-        <div class="contact-detail-icon">✉️</div>
-        <div><strong>Email</strong><br><a href="/cdn-cgi/l/email-protection#b1d2dedfc5d0d2c5f1d5d8d6d8c5d0ddc6d0c89fd8c59fd2dedc"><span class="__cf_email__" data-cfemail="23404c4d5742405763474a444a57424f54425a0d4a570d404c4e">[email&#160;protected]</span></a></div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-detail-icon">📞</div>
-        <div><strong>Téléphone</strong><br><a href="tel:+330620320130">+33 06 20 32 01 30</a></div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-detail-icon">🌍</div>
-        <div><strong>Disponibilité</strong><br>Lundi – Vendredi, 9h – 19h</div>
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-content">
+      <div class="hero-tag">Présence numérique &amp; croissance</div>
+      <h1>On crée.<br><span class="highlight">Vous Grandissez.</span></h1>
+      <p class="hero-sub">Créez votre site web, optimisez Google Business et attirez plus de clients — sans complexité
+        technique.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Voir les services</a>
+        <a href="devis.html" class="btn-secondary">Devis gratuit</a>
       </div>
     </div>
+  </section>
 
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="form-group">
-        <input type="text" placeholder="Votre nom" required />
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">Ce que nous faisons</div>
+    <h2>Nos Services</h2>
+    <p class="section-desc">Des solutions digitales pensées pour les commerces et entreprises qui veulent se développer
+      en ligne.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <h3>Sites Web Sur Mesure</h3>
+        <p>Design professionnel, rapide et adapté à votre image. Optimisé mobile et SEO dès le départ.</p>
       </div>
-      <div class="form-group">
-        <input type="email" placeholder="Votre email" required />
+      <div class="service-card">
+        <div class="service-icon">📍</div>
+        <h3>Google My Business</h3>
+        <p>Optimisation complète de votre fiche Google pour apparaître en tête des recherches locales.</p>
       </div>
-      <div class="form-group">
-        <textarea placeholder="Votre message..."></textarea>
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>Flyers & Logos</h3>
+        <p>Création d'identité visuelle cohérente et impactante pour votre marque ou votre commerce.</p>
       </div>
-      <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-size:.95rem;">Envoyer le message</button>
-    </form>
-  </div>
-</section>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Maintenance Mensuelle</h3>
+        <p>Suivi, mises à jour et support continu pour que votre site reste performant et sécurisé.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 <span>Digital Way</span> — Tous droits réservés. Fait avec 💙 par Gabriel.</p>
-</footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Smooth nav highlight on scroll
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('nav ul a');
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-text">
+      <div class="section-label">Qui sommes-nous</div>
+      <h2>À propos de Digital Way</h2>
+      <p>Je m'appelle Gabriel, et j'aide les commerces et entreprises à passer au numérique avec des solutions simples
+        et abordables.</p>
+      <p style="margin-top: .8rem;">Basé en France, j'accompagne mes clients de A à Z — de la création du site à sa
+        maintenance, en passant par le référencement local et l'identité de marque.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Clients accompagnés</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3ans</div>
+        <div class="stat-label">D'expérience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Sur mesure</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">24h</div>
+        <div class="stat-label">Délai de réponse</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Parlons-en</div>
+    <h2>Contactez-nous</h2>
+    <p class="section-desc">Prêt à démarrer ? Contactez-nous pour un devis gratuit, sans engagement.</p>
+
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div><strong>Email</strong><br><a
+              href="mailto:gabriel.comparini.ismart@gmail.com">gabriel.comparini.ismart@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div><strong>Téléphone</strong><br><a href="tel:+330620320130">+33 06 20 32 01 30</a></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🌍</div>
+          <div><strong>Disponibilité</strong><br>Lundi – Vendredi, 9h – 19h</div>
+        </div>
+      </div>
+
+      <form class="contact-form" action="https://formsubmit.co/gabriel.comparini.ismart@gmail.com" method="POST">
+        <!-- FormSubmit config -->
+        <input type="hidden" name="_subject" value="💬 Nouveau message – Digital Way" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="merci-contact.html" />
+
+        <div class="form-group">
+          <input type="text" name="Nom" placeholder="Votre nom" required />
+        </div>
+        <div class="form-group">
+          <input type="email" name="Email" placeholder="Votre email" required />
+        </div>
+        <div class="form-group">
+          <textarea name="Message" placeholder="Votre message..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-size:.95rem;">Envoyer le
+          message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>Digital Way</span> — Tous droits réservés. Fait avec 💙 par Gabriel.</p>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
+    // Smooth nav highlight on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--blue-glow)' : '';
+      });
     });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--blue-glow)' : '';
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.service-card, .portfolio-card, .stat-box').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity .5s ease, transform .5s ease';
+      observer.observe(el);
     });
-  });
 
-  // Fade-in on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.service-card, .portfolio-card, .stat-box').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity .5s ease, transform .5s ease';
-    observer.observe(el);
-  });
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button')}
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button')
+    }

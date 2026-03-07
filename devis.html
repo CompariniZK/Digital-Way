@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Devis Gratuit – Digital Way</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
       --bg: #04080f;
@@ -15,439 +18,782 @@
       --accent: #00ffe0;
       --text: #e2eaf5;
       --muted: #6b8aab;
-      --border: rgba(14,165,233,0.15);
-      --border-focus: rgba(14,165,233,0.5);
+      --border: rgba(14, 165, 233, 0.15);
+      --border-focus: rgba(14, 165, 233, 0.5);
       --error: #f87171;
       --success: #4ade80;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; overflow-x:hidden; min-height:100vh; }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
     body::before {
-      content:'';
-      position:fixed; inset:0;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events:none; z-index:9999; opacity:.4;
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .4;
     }
 
     /* NAV */
     nav {
-      position:fixed; top:0; left:0; right:0; z-index:100;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:1.2rem 6%;
-      background:rgba(4,8,15,0.85);
-      backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--border);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 6%;
+      background: rgba(4, 8, 15, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
-    .logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.4rem; letter-spacing:-0.03em; color:#fff; text-decoration:none; }
-    .logo span { color:var(--blue); }
-    nav ul { list-style:none; display:flex; gap:2.4rem; }
-    nav ul a { text-decoration:none; color:var(--muted); font-size:.9rem; font-weight:400; letter-spacing:.04em; text-transform:uppercase; transition:color .2s; position:relative; }
-    nav ul a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--blue); transition:width .3s; }
-    nav ul a:hover { color:var(--blue-glow); }
-    nav ul a:hover::after { width:100%; }
-    nav ul a.active { color:var(--blue-glow); }
-    nav ul a.active::after { width:100%; }
-    .nav-cta { background:var(--blue); color:#000!important; padding:.5rem 1.2rem; border-radius:4px; font-weight:500!important; transition:background .2s,transform .2s!important; }
-    .nav-cta::after { display:none!important; }
-    .nav-cta:hover { background:var(--blue-glow)!important; transform:translateY(-1px); }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.4rem;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 400;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      transition: color .2s;
+      position: relative;
+    }
+
+    nav ul a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--blue);
+      transition: width .3s;
+    }
+
+    nav ul a:hover {
+      color: var(--blue-glow);
+    }
+
+    nav ul a:hover::after {
+      width: 100%;
+    }
+
+    nav ul a.active {
+      color: var(--blue-glow);
+    }
+
+    nav ul a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--blue);
+      color: #000 !important;
+      padding: .5rem 1.2rem;
+      border-radius: 4px;
+      font-weight: 500 !important;
+      transition: background .2s, transform .2s !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--blue-glow) !important;
+      transform: translateY(-1px);
+    }
 
     /* LAYOUT */
     .page-wrapper {
-      min-height:100vh;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      padding-top:80px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
     }
 
     /* LEFT PANEL */
     .left-panel {
-      background:var(--surface);
-      padding:5rem 5%;
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
+      background: var(--surface);
+      padding: 5rem 5%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
+
     .left-panel::before {
-      content:'';
-      position:absolute;
-      bottom:-150px; left:-150px;
-      width:500px; height:500px;
-      background:radial-gradient(circle,rgba(14,165,233,0.1) 0%,transparent 70%);
-      pointer-events:none;
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+      pointer-events: none;
     }
+
     .left-panel::after {
-      content:'';
-      position:absolute;
-      inset:0;
-      background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
-      background-size:50px 50px;
-      mask-image:radial-gradient(ellipse 70% 70% at 30% 40%,black 20%,transparent 80%);
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(ellipse 70% 70% at 30% 40%, black 20%, transparent 80%);
     }
-    .left-content { position:relative; z-index:2; }
-    .section-label { font-size:.75rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue); margin-bottom:.8rem; font-weight:500; }
-    h1 { font-family:'Syne',sans-serif; font-size:clamp(2rem,3.5vw,3.2rem); font-weight:800; letter-spacing:-0.03em; color:#fff; line-height:1.1; }
-    h1 span { color:var(--blue); }
-    .left-desc { color:var(--muted); font-size:1rem; line-height:1.8; margin-top:1.2rem; max-width:420px; }
 
-    .info-cards { display:flex; flex-direction:column; gap:1rem; margin-top:2.5rem; }
+    .left-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-label {
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .8rem;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    h1 span {
+      color: var(--blue);
+    }
+
+    .left-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-top: 1.2rem;
+      max-width: 420px;
+    }
+
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
     .info-card {
-      display:flex; align-items:center; gap:1rem;
-      background:var(--bg);
-      border:1px solid var(--border);
-      border-radius:8px;
-      padding:1rem 1.2rem;
-      transition:border-color .2s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      transition: border-color .2s;
     }
-    .info-card:hover { border-color:rgba(14,165,233,0.35); }
-    .info-icon {
-      width:42px; height:42px;
-      background:var(--blue-dim);
-      border-radius:8px;
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.2rem;
-      flex-shrink:0;
-    }
-    .info-card-text strong { display:block; color:#fff; font-size:.9rem; font-weight:500; }
-    .info-card-text span { color:var(--muted); font-size:.82rem; }
 
-    .promise-list { display:flex; flex-direction:column; gap:.7rem; margin-top:2rem; }
-    .promise-item { display:flex; align-items:center; gap:.7rem; color:var(--muted); font-size:.88rem; }
-    .promise-item::before { content:'✓'; color:var(--accent); font-weight:700; font-size:.9rem; flex-shrink:0; }
+    .info-card:hover {
+      border-color: rgba(14, 165, 233, 0.35);
+    }
+
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--blue-dim);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .info-card-text strong {
+      display: block;
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 500;
+    }
+
+    .info-card-text span {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .promise-list {
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+      margin-top: 2rem;
+    }
+
+    .promise-item {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .promise-item::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
 
     /* RIGHT PANEL – FORM */
-    .right-panel { padding:5rem 5%; display:flex; flex-direction:column; justify-content:center; }
-
-    .form-title { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; color:#fff; margin-bottom:.4rem; }
-    .form-subtitle { color:var(--muted); font-size:.9rem; margin-bottom:2.5rem; }
-
-    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
-    .form-group { display:flex; flex-direction:column; gap:.45rem; }
-    .form-group.full { grid-column:1/-1; }
-
-    label { font-size:.82rem; font-weight:500; color:var(--muted); letter-spacing:.03em; text-transform:uppercase; }
-    label .required { color:var(--blue); margin-left:2px; }
-
-    input, select, textarea {
-      width:100%;
-      background:var(--surface);
-      border:1px solid var(--border);
-      color:var(--text);
-      font-family:'DM Sans',sans-serif;
-      font-size:.95rem;
-      font-weight:300;
-      padding:.85rem 1.1rem;
-      border-radius:6px;
-      outline:none;
-      transition:border-color .2s, box-shadow .2s;
-      appearance:none;
+    .right-panel {
+      padding: 5rem 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-    input::placeholder, textarea::placeholder { color:rgba(107,138,171,0.5); }
-    input:focus, select:focus, textarea:focus {
-      border-color:var(--blue);
-      box-shadow:0 0 0 3px rgba(14,165,233,0.08);
+
+    .form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .4rem;
     }
-    select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b8aab' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1.1rem center; padding-right:2.5rem; cursor:pointer; }
-    select option { background:var(--surface); color:var(--text); }
-    textarea { resize:vertical; min-height:130px; line-height:1.6; }
+
+    .form-subtitle {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+    }
+
+    .form-group.full {
+      grid-column: 1/-1;
+    }
+
+    label {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    label .required {
+      color: var(--blue);
+      margin-left: 2px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 300;
+      padding: .85rem 1.1rem;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(107, 138, 171, 0.5);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.08);
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b8aab' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    select option {
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+      line-height: 1.6;
+    }
 
     /* SERVICE CHECKBOXES */
-    .checkbox-group { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
-    .checkbox-label { display:flex; align-items:center; gap:.6rem; cursor:pointer; }
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      cursor: pointer;
+    }
+
     .checkbox-label input[type="checkbox"] {
-      width:18px; height:18px; min-width:18px;
-      border:1px solid var(--border);
-      border-radius:3px;
-      background:var(--surface);
-      appearance:none; cursor:pointer;
-      position:relative;
-      padding:0;
-      transition:background .2s, border-color .2s;
-      flex-shrink:0;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: var(--surface);
+      appearance: none;
+      cursor: pointer;
+      position: relative;
+      padding: 0;
+      transition: background .2s, border-color .2s;
+      flex-shrink: 0;
     }
+
     .checkbox-label input[type="checkbox"]:checked {
-      background:var(--blue);
-      border-color:var(--blue);
+      background: var(--blue);
+      border-color: var(--blue);
     }
+
     .checkbox-label input[type="checkbox"]:checked::after {
-      content:'✓';
-      position:absolute;
-      top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      color:#000;
-      font-size:.7rem;
-      font-weight:700;
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #000;
+      font-size: .7rem;
+      font-weight: 700;
     }
-    .checkbox-label span { font-size:.88rem; color:var(--muted); transition:color .2s; }
-    .checkbox-label:hover span, .checkbox-label input:checked ~ span { color:var(--text); }
+
+    .checkbox-label span {
+      font-size: .88rem;
+      color: var(--muted);
+      transition: color .2s;
+    }
+
+    .checkbox-label:hover span,
+    .checkbox-label input:checked~span {
+      color: var(--text);
+    }
 
     /* BUDGET SLIDER */
     .budget-display {
-      display:flex; justify-content:space-between; align-items:center;
-      margin-bottom:.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: .6rem;
     }
-    .budget-value { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:700; color:var(--blue); }
-    .budget-label-end { font-size:.78rem; color:var(--muted); }
+
+    .budget-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--blue);
+    }
+
+    .budget-label-end {
+      font-size: .78rem;
+      color: var(--muted);
+    }
 
     input[type="range"] {
-      -webkit-appearance:none;
-      width:100%; height:4px;
-      background:var(--border);
-      border-radius:2px;
-      border:none;
-      padding:0;
-      outline:none;
-      box-shadow:none;
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      border: none;
+      padding: 0;
+      outline: none;
+      box-shadow: none;
     }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance:none;
-      width:20px; height:20px;
-      border-radius:50%;
-      background:var(--blue);
-      cursor:pointer;
-      box-shadow:0 0 8px rgba(14,165,233,0.5);
-      transition:box-shadow .2s;
-    }
-    input[type="range"]::-webkit-slider-thumb:hover { box-shadow:0 0 14px rgba(14,165,233,0.7); }
 
-    .budget-steps { display:flex; justify-content:space-between; margin-top:.4rem; }
-    .budget-steps span { font-size:.72rem; color:var(--muted); }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--blue);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(14, 165, 233, 0.5);
+      transition: box-shadow .2s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 14px rgba(14, 165, 233, 0.7);
+    }
+
+    .budget-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: .4rem;
+    }
+
+    .budget-steps span {
+      font-size: .72rem;
+      color: var(--muted);
+    }
 
     /* SUBMIT */
     .submit-btn {
-      width:100%;
-      background:var(--blue);
-      color:#000;
-      font-family:'DM Sans',sans-serif;
-      font-weight:500;
-      font-size:1rem;
-      padding:1rem 2rem;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      margin-top:1.8rem;
-      transition:background .2s, transform .2s, box-shadow .2s;
-      box-shadow:0 0 20px rgba(14,165,233,0.25);
-      display:flex; align-items:center; justify-content:center; gap:.6rem;
-      letter-spacing:.02em;
+      width: 100%;
+      background: var(--blue);
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1.8rem;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      letter-spacing: .02em;
     }
-    .submit-btn:hover { background:var(--blue-glow); transform:translateY(-2px); box-shadow:0 0 30px rgba(14,165,233,0.45); }
-    .submit-btn:active { transform:translateY(0); }
 
-    .form-note { margin-top:1rem; text-align:center; color:var(--muted); font-size:.78rem; }
-    .form-note span { color:var(--accent); }
+    .submit-btn:hover {
+      background: var(--blue-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(14, 165, 233, 0.45);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .form-note {
+      margin-top: 1rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .form-note span {
+      color: var(--accent);
+    }
 
     /* DIVIDER */
     .form-section-title {
-      grid-column:1/-1;
-      font-family:'Syne',sans-serif;
-      font-size:.8rem;
-      font-weight:600;
-      color:var(--blue);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      padding-bottom:.6rem;
-      border-bottom:1px solid var(--border);
-      margin-top:.4rem;
+      grid-column: 1/-1;
+      font-family: 'Syne', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid var(--border);
+      margin-top: .4rem;
     }
 
-    footer { background:var(--surface); border-top:1px solid var(--border); text-align:center; padding:1.5rem 6%; color:var(--muted); font-size:.82rem; }
-    footer span { color:var(--blue); }
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.5rem 6%;
+      color: var(--muted);
+      font-size: .82rem;
+    }
 
-    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    footer span {
+      color: var(--blue);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
 
     @media(max-width:900px) {
-      .page-wrapper { grid-template-columns:1fr; }
-      .left-panel { padding:4rem 6% 3rem; }
-      .right-panel { padding:3rem 6% 4rem; }
-      nav ul { display:none; }
+      .page-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .left-panel {
+        padding: 4rem 6% 3rem;
+      }
+
+      .right-panel {
+        padding: 3rem 6% 4rem;
+      }
+
+      nav ul {
+        display: none;
+      }
     }
+
     @media(max-width:520px) {
-      .form-grid { grid-template-columns:1fr; }
-      .checkbox-group { grid-template-columns:1fr; }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .checkbox-group {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="digitalway.html" class="logo">Digital<span>Way</span></a>
-  <ul>
-    <li><a href="index.html#home">Accueil</a></li>
-    <li><a href="index.html#services">Services</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="index.html#about">À propos</a></li>
-    <li><a href="devis.html" class="active nav-cta">Devis gratuit</a></li>
-  </ul>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a href="digitalway.html" class="logo">Digital<span>Way</span></a>
+    <ul>
+      <li><a href="index.html#home">Accueil</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="index.html#about">À propos</a></li>
+      <li><a href="devis.html" class="active nav-cta">Devis gratuit</a></li>
+    </ul>
+  </nav>
 
-<div class="page-wrapper">
+  <div class="page-wrapper">
 
-  <!-- LEFT -->
-  <div class="left-panel">
-    <div class="left-content">
-      <div class="section-label">Demande de devis</div>
-      <h1>Parlons de votre <span>projet</span>.</h1>
-      <p class="left-desc">Remplissez le formulaire et recevez une réponse personnalisée sous 24h. Gratuit et sans engagement.</p>
+    <!-- LEFT -->
+    <div class="left-panel">
+      <div class="left-content">
+        <div class="section-label">Demande de devis</div>
+        <h1>Parlons de votre <span>projet</span>.</h1>
+        <p class="left-desc">Remplissez le formulaire et recevez une réponse personnalisée sous 24h. Gratuit et sans
+          engagement.</p>
 
-      <div class="info-cards">
-        <div class="info-card">
-          <div class="info-icon">✉️</div>
-          <div class="info-card-text">
-            <strong>Email</strong>
-            <span>contact@digitalway.it.com</span>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-icon">✉️</div>
+            <div class="info-card-text">
+              <strong>Email</strong>
+              <span>gabriel.comparini.ismart@gmail.com</span>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📞</div>
+            <div class="info-card-text">
+              <strong>Téléphone</strong>
+              <span>+33 06 20 32 01 30</span>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">⏱️</div>
+            <div class="info-card-text">
+              <strong>Délai de réponse</strong>
+              <span>Sous 24h, du lundi au vendredi</span>
+            </div>
           </div>
         </div>
-        <div class="info-card">
-          <div class="info-icon">📞</div>
-          <div class="info-card-text">
-            <strong>Téléphone</strong>
-            <span>+33 06 20 32 01 30</span>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-icon">⏱️</div>
-          <div class="info-card-text">
-            <strong>Délai de réponse</strong>
-            <span>Sous 24h, du lundi au vendredi</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="promise-list">
-        <div class="promise-item">Devis 100% gratuit et sans engagement</div>
-        <div class="promise-item">Réponse personnalisée sous 24h</div>
-        <div class="promise-item">Solutions adaptées à votre budget</div>
-        <div class="promise-item">Accompagnement de A à Z</div>
+        <div class="promise-list">
+          <div class="promise-item">Devis 100% gratuit et sans engagement</div>
+          <div class="promise-item">Réponse personnalisée sous 24h</div>
+          <div class="promise-item">Solutions adaptées à votre budget</div>
+          <div class="promise-item">Accompagnement de A à Z</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- RIGHT – FORM -->
-  <div class="right-panel">
-    <div class="form-title">Votre demande de devis</div>
-    <div class="form-subtitle">Tous les champs sont importants pour vous proposer la meilleure offre.</div>
+    <!-- RIGHT – FORM -->
+    <div class="right-panel">
+      <div class="form-title">Votre demande de devis</div>
+      <div class="form-subtitle">Tous les champs sont importants pour vous proposer la meilleure offre.</div>
 
-    <form action="https://formsubmit.co/gabriel.comparini.ismart@gmail.com" method="POST">
+      <form action="https://formsubmit.co/gabriel.comparini.ismart@gmail.com" method="POST">
 
-      <!-- FormSubmit config -->
-      <input type="hidden" name="_subject" value="🚀 Nouvelle demande de devis – Digital Way"/>
-      <input type="hidden" name="_captcha" value="false"/>
-      <input type="hidden" name="_template" value="table"/>
-      <input type="hidden" name="_next" value="merci.html"/>
+        <!-- FormSubmit config -->
+        <input type="hidden" name="_subject" value="🚀 Nouvelle demande de devis – Digital Way" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="merci-devis.html" />
 
-      <div class="form-grid">
+        <div class="form-grid">
 
-        <!-- Coordonnées -->
-        <div class="form-section-title">📋 Vos coordonnées</div>
+          <!-- Coordonnées -->
+          <div class="form-section-title">📋 Vos coordonnées</div>
 
-        <div class="form-group">
-          <label for="name">Nom complet <span class="required">*</span></label>
-          <input type="text" id="name" name="Nom complet" placeholder="Jean Dupont" required/>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email <span class="required">*</span></label>
-          <input type="email" id="email" name="Email" placeholder="jean@exemple.com" required/>
-        </div>
-
-        <div class="form-group full">
-          <label for="phone">Téléphone</label>
-          <input type="tel" id="phone" name="Téléphone" placeholder="+33 06 00 00 00 00"/>
-        </div>
-
-        <!-- Services -->
-        <div class="form-section-title">🎯 Services souhaités</div>
-
-        <div class="form-group full">
-          <label>Type de service <span class="required">*</span></label>
-          <div class="checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" name="Services" value="Site Web Sur Mesure"/>
-              <span>🌐 Site Web Sur Mesure</span>
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" name="Services" value="Google My Business"/>
-              <span>📍 Google My Business</span>
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" name="Services" value="Création de Logo"/>
-              <span>🎨 Création de Logo</span>
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" name="Services" value="Flyers & Communication"/>
-              <span>📄 Flyers & Communication</span>
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" name="Services" value="Maintenance Mensuelle"/>
-              <span>🔧 Maintenance Mensuelle</span>
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" name="Services" value="Pack Complet"/>
-              <span>⭐ Pack Complet</span>
-            </label>
+          <div class="form-group">
+            <label for="name">Nom complet <span class="required">*</span></label>
+            <input type="text" id="name" name="Nom complet" placeholder="Jean Dupont" required />
           </div>
-        </div>
 
-        <!-- Projet -->
-        <div class="form-section-title">📝 Votre projet</div>
-
-        <div class="form-group full">
-          <label for="description">Description du projet <span class="required">*</span></label>
-          <textarea id="description" name="Description du projet" placeholder="Décrivez votre projet, vos besoins, votre activité... Plus vous êtes précis, mieux nous pourrons vous conseiller." required></textarea>
-        </div>
-
-        <!-- Budget -->
-        <div class="form-group full">
-          <label>Budget estimé</label>
-          <div class="budget-display">
-            <span class="budget-value" id="budgetDisplay">500 €</span>
-            <span class="budget-label-end">Ajustez selon votre budget</span>
+          <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="Email" placeholder="jean@exemple.com" required />
           </div>
-          <input type="range" id="budgetSlider" name="Budget estimé" min="200" max="5000" step="50" value="500" oninput="updateBudget(this.value)"/>
-          <div class="budget-steps">
-            <span>200€</span>
-            <span>1 000€</span>
-            <span>2 500€</span>
-            <span>5 000€+</span>
+
+          <div class="form-group full">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" name="Téléphone" placeholder="+33 06 00 00 00 00" />
           </div>
-        </div>
 
-      </div><!-- end form-grid -->
+          <!-- Services -->
+          <div class="form-section-title">🎯 Services souhaités</div>
 
-      <button type="submit" class="submit-btn">
-        <span>📨</span> Envoyer ma demande de devis
-      </button>
+          <div class="form-group full">
+            <label>Type de service <span class="required">*</span></label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="Services" value="Site Web Sur Mesure" />
+                <span>🌐 Site Web Sur Mesure</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="Services" value="Google My Business" />
+                <span>📍 Google My Business</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="Services" value="Création de Logo" />
+                <span>🎨 Création de Logo</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="Services" value="Flyers & Communication" />
+                <span>📄 Flyers & Communication</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="Services" value="Maintenance Mensuelle" />
+                <span>🔧 Maintenance Mensuelle</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="Services" value="Pack Complet" />
+                <span>⭐ Pack Complet</span>
+              </label>
+            </div>
+          </div>
 
-      <p class="form-note">
-        <span>✓</span> Vos données sont protégées et ne seront jamais partagées.
-      </p>
+          <!-- Projet -->
+          <div class="form-section-title">📝 Votre projet</div>
 
-    </form>
-  </div>
+          <div class="form-group full">
+            <label for="description">Description du projet <span class="required">*</span></label>
+            <textarea id="description" name="Description du projet"
+              placeholder="Décrivez votre projet, vos besoins, votre activité... Plus vous êtes précis, mieux nous pourrons vous conseiller."
+              required></textarea>
+          </div>
 
-</div><!-- end page-wrapper -->
+          <!-- Budget -->
+          <div class="form-group full">
+            <label>Budget estimé</label>
+            <div class="budget-display">
+              <span class="budget-value" id="budgetDisplay">500 €</span>
+              <span class="budget-label-end">Ajustez selon votre budget</span>
+            </div>
+            <input type="range" id="budgetSlider" name="Budget estimé" min="200" max="5000" step="50" value="500"
+              oninput="updateBudget(this.value)" />
+            <div class="budget-steps">
+              <span>200€</span>
+              <span>1 000€</span>
+              <span>2 500€</span>
+              <span>5 000€+</span>
+            </div>
+          </div>
 
-<footer>
-  <p>© 2025 <span>Digital Way</span> — Tous droits réservés. Fait avec 💙 par Gabriel.</p>
-</footer>
+        </div><!-- end form-grid -->
 
-<script>
-  function updateBudget(val) {
-    const num = parseInt(val);
-    document.getElementById('budgetDisplay').textContent =
-      num >= 5000 ? '5 000€ +' : num.toLocaleString('fr-FR') + ' €';
+        <button type="submit" class="submit-btn">
+          <span>📨</span> Envoyer ma demande de devis
+        </button>
 
-    // Update slider gradient
-    const pct = ((num - 200) / (5000 - 200)) * 100;
-    document.getElementById('budgetSlider').style.background =
-      `linear-gradient(to right, var(--blue) ${pct}%, var(--border) ${pct}%)`;
-  }
-  updateBudget(500);
-</script>
+        <p class="form-note">
+          <span>✓</span> Vos données sont protégées et ne seront jamais partagées.
+        </p>
+
+      </form>
+    </div>
+
+  </div><!-- end page-wrapper -->
+
+  <footer>
+    <p>© 2025 <span>Digital Way</span> — Tous droits réservés. Fait avec 💙 par Gabriel.</p>
+  </footer>
+
+  <script>
+    function updateBudget(val) {
+      const num = parseInt(val);
+      document.getElementById('budgetDisplay').textContent =
+        num >= 5000 ? '5 000€ +' : num.toLocaleString('fr-FR') + ' €';
+
+      // Update slider gradient
+      const pct = ((num - 200) / (5000 - 200)) * 100;
+      document.getElementById('budgetSlider').style.background =
+        `linear-gradient(to right, var(--blue) ${pct}%, var(--border) ${pct}%)`;
+    }
+    updateBudget(500);
+  </script>
 </body>
+
 </html>
