@@ -637,10 +637,85 @@
       }
     }
 
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: .4rem;
+      z-index: 200;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s ease;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
       nav ul {
         display: none;
+        flex-direction: column;
+        gap: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(4, 8, 15, 0.97);
+        backdrop-filter: blur(16px);
+        align-items: center;
+        justify-content: center;
+        z-index: 150;
+      }
+
+      nav ul.open {
+        display: flex;
+      }
+
+      nav ul li {
+        width: 100%;
+        text-align: center;
+      }
+
+      nav ul a {
+        display: block;
+        padding: 1.2rem 2rem;
+        font-size: 1.2rem;
+        color: var(--text) !important;
+      }
+
+      nav ul a:hover {
+        color: var(--blue-glow) !important;
+      }
+
+      .nav-cta {
+        margin-top: .5rem;
+        display: inline-block !important;
+        padding: .8rem 2rem !important;
       }
 
       #about {
@@ -666,13 +741,18 @@
   <!-- NAV -->
   <nav>
     <div class="logo">Digital<span>Way</span></div>
-    <ul>
-      <li><a href="#home">Accueil</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="portifolio.html">Portfolio</a></li>
-      <li><a href="#about">À propos</a></li>
-      <li><a href="devis.html" class="nav-cta">Contact</a></li>
+    <ul id="nav-menu">
+      <li><a href="#home" class="nav-link">Accueil</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="portifolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="#about" class="nav-link">À propos</a></li>
+      <li><a href="devis.html" class="nav-cta nav-link">Contact</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -806,6 +886,22 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navMenu.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMenu.classList.remove('open');
+      });
+    });
+
     // Smooth nav highlight on scroll
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav ul a');
