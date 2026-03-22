@@ -49,7 +49,7 @@
       inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 9999;
+      z-index: 1;
       opacity: .4;
     }
 
@@ -582,6 +582,12 @@
       }
     }
 
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:.4rem; z-index:200; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--text); border-radius:2px; transition:all .3s ease; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
     @media(max-width:900px) {
       .page-wrapper {
         grid-template-columns: 1fr;
@@ -595,9 +601,13 @@
         padding: 3rem 6% 4rem;
       }
 
-      nav ul {
-        display: none;
-      }
+      .hamburger { display:flex; }
+      nav ul { display:none; flex-direction:column; gap:0; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(4,8,15,0.97); backdrop-filter:blur(16px); align-items:center; justify-content:center; z-index:150; }
+      nav ul.open { display:flex; }
+      nav ul li { width:100%; text-align:center; }
+      nav ul a { display:block; padding:1.2rem 2rem; font-size:1.2rem; color:var(--text)!important; }
+      nav ul a:hover { color:var(--blue-glow)!important; }
+      .nav-cta { margin-top:.5rem; display:inline-block!important; padding:.8rem 2rem!important; }
     }
 
     @media(max-width:520px) {
@@ -616,14 +626,17 @@
 
   <!-- NAV -->
   <nav>
-    <a href="digitalway.html" class="logo">Digital<span>Way</span></a>
-    <ul>
-      <li><a href="index.html#home">Accueil</a></li>
-      <li><a href="index.html#services">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="index.html#about">À propos</a></li>
-      <li><a href="devis.html" class="active nav-cta">Devis gratuit</a></li>
+    <a href="index.html" class="logo">Digital<span>Way</span></a>
+    <ul id="nav-menu">
+      <li><a href="index.html#home" class="nav-link">Accueil</a></li>
+      <li><a href="index.html#services" class="nav-link">Services</a></li>
+      <li><a href="portifolio.html" class="nav-link">Portfolio</a></li>
+      <li><a href="index.html#about" class="nav-link">À propos</a></li>
+      <li><a href="devis.html" class="active nav-cta nav-link">Devis gratuit</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <div class="page-wrapper">
@@ -783,6 +796,20 @@
   </footer>
 
   <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMenu.classList.remove('open');
+      });
+    });
+
     function updateBudget(val) {
       const num = parseInt(val);
       document.getElementById('budgetDisplay').textContent =
