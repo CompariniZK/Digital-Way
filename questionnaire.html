@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Questionnaire Projet – Digital Way</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #04080f;
+      --surface: #080e1a;
+      --blue: #0ea5e9;
+      --blue-glow: #38bdf8;
+      --blue-dim: #0c2a3e;
+      --accent: #00ffe0;
+      --text: #e2eaf5;
+      --muted: #6b8aab;
+      --border: rgba(14, 165, 233, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: .4;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 6%;
+      background: rgba(4, 8, 15, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--blue); }
+
+    .progress-wrap {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      z-index: 101;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+      transition: width .3s ease;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 9rem 6% 3rem;
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: -20%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .section-label {
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .8rem;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    h1 span {
+      background: linear-gradient(100deg, #0ea5e9 0%, #00ffe0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-top: 1.2rem;
+      max-width: 620px;
+    }
+
+    .hero-note {
+      display: inline-flex;
+      gap: .6rem;
+      align-items: center;
+      margin-top: 1.6rem;
+      background: var(--blue-dim);
+      border: 1px solid var(--border);
+      color: var(--blue-glow);
+      font-size: .82rem;
+      padding: .5rem 1rem;
+      border-radius: 99px;
+    }
+
+    /* FORM */
+    form {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 6% 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    fieldset {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    legend {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #fff;
+      padding: 0 .6rem;
+      margin-left: -.6rem;
+    }
+
+    legend .num {
+      color: var(--blue);
+      margin-right: .4rem;
+    }
+
+    .field { margin-top: 1.4rem; }
+
+    .field > label,
+    .field > .label {
+      display: block;
+      font-size: .92rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+
+    .req { color: var(--blue); margin-left: 2px; }
+
+    .hint {
+      display: block;
+      font-size: .8rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-top: .15rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      padding: .8rem 1rem;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    }
+
+    input::placeholder, textarea::placeholder { color: rgba(107, 138, 171, 0.55); }
+
+    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+    input[type="date"] { color-scheme: dark; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 1.2rem;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: .6rem;
+    }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      padding: .7rem .9rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg);
+      cursor: pointer;
+      font-size: .92rem;
+      color: var(--muted);
+      transition: border-color .2s, color .2s, background .2s;
+    }
+
+    .choice:hover { border-color: rgba(14, 165, 233, 0.4); color: var(--text); }
+
+    .choice input {
+      appearance: none;
+      width: 18px; height: 18px;
+      min-width: 18px;
+      border: 1px solid rgba(14, 165, 233, 0.4);
+      border-radius: 4px;
+      background: var(--surface);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .choice input[type="radio"] { border-radius: 50%; }
+
+    .choice input:checked {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .choice input:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: #000;
+      font-size: .7rem;
+      font-weight: 700;
+    }
+
+    .choice:has(input:checked) {
+      border-color: var(--blue);
+      color: var(--text);
+      background: rgba(14, 165, 233, 0.07);
+    }
+
+    .files-box {
+      margin-top: 1.4rem;
+      padding: 1.2rem 1.4rem;
+      border: 1px dashed rgba(14, 165, 233, 0.35);
+      border-radius: 8px;
+      background: rgba(14, 165, 233, 0.04);
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+
+    .files-box strong { color: var(--text); font-weight: 500; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--blue);
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      padding: 1.05rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: .5rem;
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+
+    .submit-btn:hover {
+      background: var(--blue-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(14, 165, 233, 0.45);
+    }
+
+    .submit-btn:disabled { opacity: .6; cursor: wait; transform: none; }
+
+    .form-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    .form-note span { color: var(--accent); }
+
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.5rem 6%;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    footer span { color: var(--blue); }
+
+    @media (max-width: 640px) {
+      .hero { padding-top: 7.5rem; }
+      fieldset { padding: 1.5rem 1.1rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .choices { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+
+  <nav>
+    <a href="index.html" class="logo">Digital<span>Way</span></a>
+  </nav>
+
+  <header class="hero">
+    <div class="section-label">Questionnaire projet</div>
+    <h1>Parlons de votre <span>futur site</span>.</h1>
+    <p>Merci pour votre confiance ! Ces quelques questions me permettent de bien comprendre votre entreprise et de
+      créer un site qui vous ressemble. Si vous n'avez pas encore la réponse à certaines questions, laissez-les vides :
+      on en parlera ensemble.</p>
+    <div class="hero-note">⏱️ Environ 10 minutes · vos réponses sont enregistrées sur cet appareil au fur et à mesure</div>
+  </header>
+
+  <form id="questionnaire" action="https://formsubmit.co/gabriel.comparini.ismart@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="📝 Nouveau questionnaire projet – Digital Way" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_next" value="https://www.digitalway.it.com/merci-questionnaire.html" />
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+    <!-- 1. ENTREPRISE -->
+    <fieldset>
+      <legend><span class="num">01</span>Votre entreprise</legend>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="contact">Votre nom et prénom <span class="req">*</span></label>
+          <input type="text" id="contact" name="Nom du contact" required />
+        </div>
+        <div class="field">
+          <label for="entreprise">Nom de l'entreprise <span class="req">*</span></label>
+          <input type="text" id="entreprise" name="Nom de l'entreprise" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="activite">Votre activité en quelques phrases <span class="req">*</span>
+          <span class="hint">Que faites-vous ? Que proposez-vous à vos clients ?</span></label>
+        <textarea id="activite" name="Activité" required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="zone">Ville / zone géographique où vous travaillez</label>
+        <input type="text" id="zone" name="Zone géographique" placeholder="Ex. : Lyon et alentours" />
+      </div>
+
+      <div class="field">
+        <label for="difference">Ce qui vous différencie de vos concurrents</label>
+        <textarea id="difference" name="Différenciation"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="slogan">Avez-vous un slogan ou une phrase qui vous représente ?</label>
+        <input type="text" id="slogan" name="Slogan" />
+      </div>
+    </fieldset>
+
+    <!-- 2. OBJECTIFS -->
+    <fieldset>
+      <legend><span class="num">02</span>Vos objectifs</legend>
+
+      <div class="field">
+        <span class="label">Quel est le but principal du site ? <span class="hint">Plusieurs choix possibles</span></span>
+        <div class="choices" data-group="Objectifs du site">
+          <label class="choice"><input type="checkbox" value="Être trouvé sur Google" />Être trouvé·e sur Google</label>
+          <label class="choice"><input type="checkbox" value="Recevoir des demandes de devis" />Recevoir des demandes de devis</label>
+          <label class="choice"><input type="checkbox" value="Prise de rendez-vous" />Prise de rendez-vous</label>
+          <label class="choice"><input type="checkbox" value="Vente en ligne" />Vente en ligne</label>
+          <label class="choice"><input type="checkbox" value="Présenter mes réalisations" />Présenter mes réalisations</label>
+          <label class="choice"><input type="checkbox" value="Crédibilité / image professionnelle" />Crédibilité / image pro</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="cible">Qui sont vos clients idéaux ?
+          <span class="hint">Âge, profil, particuliers ou professionnels…</span></label>
+        <textarea id="cible" name="Clients idéaux"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="action">Que voulez-vous qu'un visiteur fasse en arrivant sur le site ?
+          <span class="hint">Appeler, réserver, remplir un formulaire, acheter…</span></label>
+        <input type="text" id="action" name="Action principale du visiteur" />
+      </div>
+    </fieldset>
+
+    <!-- 3. CONTENU -->
+    <fieldset>
+      <legend><span class="num">03</span>Le contenu</legend>
+
+      <div class="field">
+        <span class="label">Quelles pages souhaitez-vous ?</span>
+        <div class="choices" data-group="Pages souhaitées">
+          <label class="choice"><input type="checkbox" value="Accueil" checked />Accueil</label>
+          <label class="choice"><input type="checkbox" value="À propos" />À propos</label>
+          <label class="choice"><input type="checkbox" value="Services / Produits" />Services / Produits</label>
+          <label class="choice"><input type="checkbox" value="Tarifs" />Tarifs</label>
+          <label class="choice"><input type="checkbox" value="Galerie / Réalisations" />Galerie / Réalisations</label>
+          <label class="choice"><input type="checkbox" value="Avis clients" />Avis clients</label>
+          <label class="choice"><input type="checkbox" value="FAQ" />FAQ</label>
+          <label class="choice"><input type="checkbox" value="Contact" checked />Contact</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="services">Vos services / produits
+          <span class="hint">Une courte description pour chacun, et les prix si vous souhaitez les afficher</span></label>
+        <textarea id="services" name="Services et produits" style="min-height:140px"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="histoire">Quelques lignes sur vous / votre histoire (pour la page « À propos »)</label>
+        <textarea id="histoire" name="Histoire / À propos"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="avis">Avez-vous des avis ou témoignages clients à mettre en avant ?</label>
+        <textarea id="avis" name="Avis clients"></textarea>
+      </div>
+
+      <div class="field">
+        <span class="label">Avez-vous des photos (vous, vos locaux, vos produits, vos réalisations) ?</span>
+        <div class="choices" data-group="Photos" data-single>
+          <label class="choice"><input type="radio" name="_photos" value="Oui, j'en ai" />Oui, j'en ai</label>
+          <label class="choice"><input type="radio" name="_photos" value="Quelques-unes" />Quelques-unes</label>
+          <label class="choice"><input type="radio" name="_photos" value="Non, pas encore" />Non, pas encore</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 4. DESIGN -->
+    <fieldset>
+      <legend><span class="num">04</span>Le design</legend>
+
+      <div class="field">
+        <span class="label">Avez-vous déjà un logo ?</span>
+        <div class="choices" data-group="Logo" data-single>
+          <label class="choice"><input type="radio" name="_logo" value="Oui" />Oui</label>
+          <label class="choice"><input type="radio" name="_logo" value="Non, j'aimerais en créer un" />Non, j'aimerais en créer un</label>
+          <label class="choice"><input type="radio" name="_logo" value="Non, pas besoin" />Non, pas besoin</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="couleurs">Couleurs ou polices à respecter ?</label>
+        <input type="text" id="couleurs" name="Couleurs / polices" placeholder="Ex. : vert sauge et beige" />
+      </div>
+
+      <div class="field">
+        <span class="label">Quelle ambiance souhaitez-vous ?</span>
+        <div class="choices" data-group="Ambiance">
+          <label class="choice"><input type="checkbox" value="Moderne" />Moderne</label>
+          <label class="choice"><input type="checkbox" value="Élégante" />Élégante</label>
+          <label class="choice"><input type="checkbox" value="Chaleureuse" />Chaleureuse</label>
+          <label class="choice"><input type="checkbox" value="Minimaliste" />Minimaliste</label>
+          <label class="choice"><input type="checkbox" value="Colorée" />Colorée</label>
+          <label class="choice"><input type="checkbox" value="Naturelle" />Naturelle</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="inspirations">2 ou 3 sites que vous aimez (même d'un autre domaine) et ce qui vous plaît dedans</label>
+        <textarea id="inspirations" name="Sites d'inspiration"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="eviter">Y a-t-il quelque chose que vous ne voulez surtout pas ?</label>
+        <input type="text" id="eviter" name="À éviter" />
+      </div>
+    </fieldset>
+
+    <!-- 5. FONCTIONNALITÉS -->
+    <fieldset>
+      <legend><span class="num">05</span>Les fonctionnalités</legend>
+
+      <div class="field">
+        <span class="label">De quoi avez-vous besoin ? <span class="hint">Plusieurs choix possibles</span></span>
+        <div class="choices" data-group="Fonctionnalités">
+          <label class="choice"><input type="checkbox" value="Formulaire de contact" />Formulaire de contact</label>
+          <label class="choice"><input type="checkbox" value="Réservation en ligne" />Réservation en ligne</label>
+          <label class="choice"><input type="checkbox" value="Bouton WhatsApp" />Bouton WhatsApp</label>
+          <label class="choice"><input type="checkbox" value="Carte Google Maps" />Carte Google Maps</label>
+          <label class="choice"><input type="checkbox" value="Vente en ligne" />Vente en ligne</label>
+          <label class="choice"><input type="checkbox" value="Blog / actualités" />Blog / actualités</label>
+          <label class="choice"><input type="checkbox" value="Site en plusieurs langues" />Plusieurs langues</label>
+          <label class="choice"><input type="checkbox" value="Lien vers les réseaux sociaux" />Liens réseaux sociaux</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fonctions-autres">Autre chose ?</label>
+        <input type="text" id="fonctions-autres" name="Autres fonctionnalités" />
+      </div>
+    </fieldset>
+
+    <!-- 6. COORDONNÉES -->
+    <fieldset>
+      <legend><span class="num">06</span>Coordonnées et réseaux</legend>
+      <span class="hint" style="margin-top:.6rem">Les informations à afficher sur le site.</span>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="tel">Téléphone</label>
+          <input type="tel" id="tel" name="Téléphone" />
+        </div>
+        <div class="field">
+          <label for="email">E-mail <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="adresse">Adresse (si vous recevez des clients)</label>
+        <input type="text" id="adresse" name="Adresse" />
+      </div>
+
+      <div class="field">
+        <label for="horaires">Horaires d'ouverture</label>
+        <textarea id="horaires" name="Horaires" style="min-height:80px" placeholder="Ex. : du lundi au vendredi, 9h–18h"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="reseaux">Liens de vos réseaux sociaux
+          <span class="hint">Instagram, Facebook, TikTok, LinkedIn…</span></label>
+        <textarea id="reseaux" name="Réseaux sociaux" style="min-height:80px"></textarea>
+      </div>
+
+      <div class="field">
+        <span class="label">Avez-vous une fiche Google My Business (Google Maps) ?</span>
+        <div class="choices" data-group="Google My Business" data-single>
+          <label class="choice"><input type="radio" name="_gmb" value="Oui" />Oui</label>
+          <label class="choice"><input type="radio" name="_gmb" value="Non, j'aimerais en créer une" />Non, à créer</label>
+          <label class="choice"><input type="radio" name="_gmb" value="Je ne sais pas" />Je ne sais pas</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 7. DOMAINE & LÉGAL -->
+    <fieldset>
+      <legend><span class="num">07</span>Nom de domaine et informations légales</legend>
+
+      <div class="field">
+        <label for="domaine">Avez-vous déjà un nom de domaine ? Sinon, quel nom aimeriez-vous ?
+          <span class="hint">Ex. : monentreprise.fr</span></label>
+        <input type="text" id="domaine" name="Nom de domaine" />
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="siret">Numéro SIRET</label>
+          <input type="text" id="siret" name="SIRET" inputmode="numeric" />
+        </div>
+        <div class="field">
+          <label for="forme">Forme juridique</label>
+          <select id="forme" name="Forme juridique">
+            <option value="">— Choisir —</option>
+            <option>Micro-entreprise / auto-entrepreneur</option>
+            <option>EI</option>
+            <option>EURL</option>
+            <option>SASU</option>
+            <option>SARL</option>
+            <option>SAS</option>
+            <option>Association</option>
+            <option>Autre / je ne sais pas</option>
+          </select>
+        </div>
+      </div>
+      <span class="hint" style="margin-top:.6rem">Nécessaires pour les mentions légales, obligatoires sur tout site professionnel.</span>
+    </fieldset>
+
+    <!-- 8. PLANNING -->
+    <fieldset>
+      <legend><span class="num">08</span>Le planning</legend>
+
+      <div class="field">
+        <label for="date">Date souhaitée pour la mise en ligne</label>
+        <input type="date" id="date" name="Date de mise en ligne souhaitée" />
+      </div>
+
+      <div class="field">
+        <label for="autre">Autre chose que vous aimeriez ajouter ?</label>
+        <textarea id="autre" name="Remarques"></textarea>
+      </div>
+
+      <div class="files-box">
+        📎 <strong>Vos fichiers (logo, photos, documents)</strong><br />
+        Envoyez-les-moi directement par e-mail à
+        <strong>gabriel.comparini.ismart@gmail.com</strong> ou par WhatsApp au <strong>+33 6 20 32 01 30</strong>,
+        en bonne qualité de préférence (logo en PNG ou SVG).
+      </div>
+    </fieldset>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Envoyer mes réponses</button>
+    <p class="form-note"><span>✓</span> Vos réponses sont envoyées uniquement à Digital Way et ne seront jamais partagées.</p>
+  </form>
+
+  <footer>
+    <p>© 2025 <span>Digital Way</span> — Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('questionnaire');
+    const progress = document.getElementById('progress');
+    const STORAGE_KEY = 'dw-questionnaire-draft';
+
+    // Group checkboxes / radios into one hidden field each, so the email shows one clean line per question
+    function syncGroups() {
+      form.querySelectorAll('.choices[data-group]').forEach(group => {
+        const name = group.dataset.group;
+        let hidden = form.querySelector(`input[type="hidden"][name="${CSS.escape(name)}"]`);
+        if (!hidden) {
+          hidden = document.createElement('input');
+          hidden.type = 'hidden';
+          hidden.name = name;
+          form.appendChild(hidden);
+        }
+        hidden.value = [...group.querySelectorAll('input:checked')].map(i => i.value).join(', ');
+      });
+    }
+
+    // Progress bar: share of questions answered
+    function updateProgress() {
+      const fields = [...form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea, select')]
+        .filter(el => !el.name.startsWith('_'));
+      const groups = [...form.querySelectorAll('.choices[data-group]')];
+      const total = fields.length + groups.length;
+      const done = fields.filter(el => el.value.trim()).length +
+        groups.filter(g => g.querySelector('input:checked')).length;
+      progress.style.width = (done / total * 100) + '%';
+    }
+
+    // Draft saving on this device
+    function saveDraft() {
+      try {
+        const data = {};
+        form.querySelectorAll('input:not([type="hidden"]), textarea, select').forEach((el, i) => {
+          const key = el.id || 'idx' + i;
+          data[key] = (el.type === 'checkbox' || el.type === 'radio') ? el.checked : el.value;
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) { }
+    }
+
+    function loadDraft() {
+      try {
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+        if (!data) return;
+        form.querySelectorAll('input:not([type="hidden"]), textarea, select').forEach((el, i) => {
+          const key = el.id || 'idx' + i;
+          if (!(key in data)) return;
+          if (el.type === 'checkbox' || el.type === 'radio') el.checked = data[key];
+          else el.value = data[key];
+        });
+      } catch (e) { }
+    }
+
+    loadDraft();
+    updateProgress();
+
+    form.addEventListener('input', () => { updateProgress(); saveDraft(); });
+    form.addEventListener('change', () => { updateProgress(); saveDraft(); });
+
+    form.addEventListener('submit', () => {
+      syncGroups();
+      // Radios only need a name to be exclusive; drop it so they aren't sent twice
+      form.querySelectorAll('.choices input[type="radio"]').forEach(r => r.removeAttribute('name'));
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours…';
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+    });
+  </script>
+</body>
+
+</html>
