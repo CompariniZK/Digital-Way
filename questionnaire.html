@@ -722,6 +722,10 @@
 
     form.addEventListener('submit', () => {
       syncGroups();
+      // Send the client back to the thank-you page on whatever address this form is hosted (domain or vercel.app)
+      if (location.protocol.startsWith('http')) {
+        form.querySelector('input[name="_next"]').value = new URL('merci-questionnaire.html', location.href).href;
+      }
       // Radios only need a name to be exclusive; drop it so they aren't sent twice
       form.querySelectorAll('.choices input[type="radio"]').forEach(r => r.removeAttribute('name'));
       const btn = document.getElementById('submitBtn');
