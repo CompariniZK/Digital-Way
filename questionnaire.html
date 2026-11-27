@@ -731,7 +731,14 @@
       const btn = document.getElementById('submitBtn');
       btn.disabled = true;
       btn.textContent = 'Envoi en cours…';
-      try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+      // The draft is cleared on merci-questionnaire.html, once the submission has really gone through
+    });
+
+    // If the page is restored from the back/forward cache after a failed submit, re-enable the button
+    window.addEventListener('pageshow', () => {
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = false;
+      btn.textContent = 'Envoyer mes réponses';
     });
   </script>
 </body>
